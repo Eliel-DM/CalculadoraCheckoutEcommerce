@@ -12,12 +12,13 @@ $dataBase = [
     Total bruto da compra > R$ 500,00	Desconto fixo adicional de R$ 50,00
 */
 
-function isEletronicProducts (array $dataBase){
+function isEletronicProducts(array $dataBase)
+{
     $valorTotal = 0;
-    for ($i = 0; $i < count($dataBase);$i++){
+    for ($i = 0; $i < count($dataBase); $i++) {
         $categoria = $dataBase[$i]['categoria'];
 
-        if($categoria == 'Eletrônicos'){
+        if ($categoria == 'Eletrônicos') {
             $precoInteiro = $dataBase[$i]['preco'];
             $precoInteiroComDesconto = $precoInteiro - $precoInteiro * 0.1;
             $valorTotal += $precoInteiroComDesconto; // Caso seja eletrônico aplicará o desconto de 10%;
@@ -30,16 +31,20 @@ function isEletronicProducts (array $dataBase){
     return $valorTotal;
 }
 
-function isBigThan500 ($valorTotal){
+function isBigThan500($valorTotal)
+{
     $descontoFixo = 50;
-    if($valorTotal > 500){
+    if ($valorTotal > 500) {
         $valorTotal -= $descontoFixo;
         echo "Desconto aplicado no valor de 50 R$ !<br>";
         echo "O valor total da compra é de : $valorTotal R$! <br>";
-    } else{
+    } else {
         echo "Nenhum desconto aplicado em relação ao preço total";
     }
 }
 
+// Organizar a Saída conforme o esperado de retorno pelo exercício;
+// Estudar e fazer o uso dos formatadores monetários nativos do PHP;
+//
 $valorTotal = isEletronicProducts($dataBase);
 isBigThan500($valorTotal);
